@@ -41,10 +41,6 @@ const nextConfig = {
             to: 'static/chunks/pages/[name][ext]',
           },
           {
-            from: './demo.mp4',
-            to: 'static/chunks/pages/demo.mp4',
-          },
-          {
             from: './models',
             to: 'static/chunks/pages',
           },

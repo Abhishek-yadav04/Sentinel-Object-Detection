@@ -21,6 +21,7 @@
     "jimp": "^0.16.2",
     "konva": "^9.2.0",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.462.0",
     "ndarray": "^1.0.19",
     "ndarray-ops": "^1.2.2",
     "next": "13.1.1",

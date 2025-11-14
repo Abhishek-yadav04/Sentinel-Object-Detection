@@ -288,18 +288,46 @@ const Yolo = (props: any) => {
   }
 
   return (
-    <ObjectDetectionCamera
-      width={props.width}
-      height={props.height}
-      preprocess={preprocess}
-      postprocess={postprocess}
-      // resizeCanvasCtx={resizeCanvasCtx}
-      session={session}
-      changeCurrentModelResolution={changeModelResolution}
-      currentModelResolution={modelResolution}
-      modelName={modelName}
-      executionProvider={executionProvider}
-    />
+    <div className="w-full">
+      <div className="flex items-center gap-2 px-2 pb-2">
+        <label className="text-xs text-neutral-400">Model</label>
+        <select
+          className="bg-neutral-900 border border-neutral-700 rounded px-2 py-1 text-sm"
+          value={modelName}
+          onChange={(e) => {
+            const name = e.target.value;
+            const found = RES_TO_MODEL.find(([, n]) => n === name);
+            if (found) {
+              setModelName(name);
+              setModelResolution(found[0]);
+            }
+          }}
+        >
+          {RES_TO_MODEL.map(([res, name]) => (
+            <option key={name} value={name}>
+              {name} ({res[0]}x{res[1]})
+            </option>
+          ))}
+        </select>
+        <button
+          className="ml-auto text-xs px-2 py-1 rounded border border-neutral-700 bg-neutral-900 hover:bg-neutral-800"
+          onClick={() => setReloadToken((t) => t + 1)}
+        >
+          Reload
+        </button>
+      </div>
+      <ObjectDetectionCamera
+        width={props.width}
+        height={props.height}
+        preprocess={preprocess}
+        postprocess={postprocess}
+        session={session}
+        changeCurrentModelResolution={changeModelResolution}
+        currentModelResolution={modelResolution}
+        modelName={modelName}
+        executionProvider={executionProvider}
+      />
+    </div>
   );
 };
 
